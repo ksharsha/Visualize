@@ -17,7 +17,6 @@ require 'cunn'
 require 'image'
 
 local t = require 'transforms'
-local imagenetLabel = require './imagenet'
 
 
 
@@ -55,7 +54,6 @@ local N = 5
 --itorch.image(img)
    img = transform(img)
 itorch.image(img)
-    print(img:size())
 
    -- View as mini-batch of size 1
    local batch = img:view(1, table.unpack(img:size():totable()))
@@ -72,13 +70,5 @@ itorch.image(img)
         end
     end
         
-
-   -- Get the top 5 class indexes and probabilities
-   local probs, indexes = output:topk(N, true, true)
-   --print('Classes for', arg[i])
-   for n=1,N do
-     print(probs[n], imagenetLabel[indexes[n]])
-   end
-   print('')
 
 --end
